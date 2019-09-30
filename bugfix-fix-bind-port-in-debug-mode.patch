@@ -1,0 +1,61 @@
+diff -Nur ntp-4.2.8p12.bak/ntpdate/ntpdate.c ntp-4.2.8p12/ntpdate/ntpdate.c
+--- ntp-4.2.8p12.bak/ntpdate/ntpdate.c	2018-08-14 07:51:07.000000000 -0400
++++ ntp-4.2.8p12/ntpdate/ntpdate.c	2019-01-22 20:20:02.484000000 -0500
+@@ -172,6 +172,7 @@
+  * Counter for keeping track of completed servers
+  */
+ int complete_servers = 0;
++int bind_port = 0;
+ 
+ /*
+  * File of encryption keys
+@@ -346,7 +347,7 @@
+ 	/*
+ 	 * Decode argument list
+ 	 */
+-	while ((c = ntp_getopt(argc, argv, "46a:bBde:k:o:p:qst:uv")) != EOF)
++	while ((c = ntp_getopt(argc, argv, "46a:bBdr:e:k:o:p:qst:uv")) != EOF)
+ 		switch (c)
+ 		{
+ 		case '4':
+@@ -371,6 +372,9 @@
+ 		case 'd':
+ 			++debug;
+ 			break;
++		case 'r':
++			bind_port = atoi(ntp_optarg);
++			break;
+ 		case 'e':
+ 			if (!atolfp(ntp_optarg, &tmp)
+ 			|| tmp.l_ui != 0) {
+@@ -432,7 +436,7 @@
+ 
+ 	if (errflg) {
+ 		(void) fprintf(stderr,
+-		    "usage: %s [-46bBdqsuv] [-a key#] [-e delay] [-k file] [-p samples] [-o version#] [-t timeo] server ...\n",
++		    "usage: %s [-46bBdqsuv] [-a key#] [-e delay] [-k file] [-p samples] [-o version#] [-t timeo] [-r port] server ...\n",
+ 		    progname);
+ 		exit(2);
+ 	}
+@@ -1774,6 +1778,21 @@
+ 				exit(1);
+ 			}
+ 		}
++		else if (debug && bind_port > 0) {
++			((struct sockaddr_in *)(res->ai_addr))->sin_port = htons(bind_port);
++			if (bind(fd[nbsock], res->ai_addr,
++				SOCKLEN((sockaddr_u *)res->ai_addr)) < 0) {
++#ifndef SYS_WINNT
++				if (errno == EADDRINUSE)
++#else
++				if (WSAGetLastError() == WSAEADDRINUSE)
++#endif /* SYS_WINNT */
++					msyslog(LOG_ERR, "the NTP socket is in use, exiting");
++				else
++					msyslog(LOG_ERR, "bind() fails: %m");
++				exit(1);
++			}
++		} 
+ 
+ #ifdef HAVE_POLL_H
+ 		fdmask[nbsock].fd = fd[nbsock];

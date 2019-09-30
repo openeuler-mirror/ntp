@@ -1,0 +1,24 @@
+diff -up ntp-4.2.8p13/configure.ssl-libs ntp-4.2.8p13/configure
+--- ntp-4.2.8p13/configure.ssl-libs	2019-02-20 18:56:00.000000000 +0100
++++ ntp-4.2.8p13/configure	2019-05-20 10:20:54.700427323 +0200
+@@ -30257,7 +30257,7 @@ $as_echo_n "checking pkg-config for $pkg
+ 	    CPPFLAGS_NTP="$CPPFLAGS_NTP `$PKG_CONFIG --cflags-only-I $pkg`"
+ 	    CFLAGS_NTP="$CFLAGS_NTP `$PKG_CONFIG --cflags-only-other $pkg`"
+ 	    LDADD_NTP="$LDADD_NTP `$PKG_CONFIG --libs-only-L $pkg`"
+-	    LDADD_NTP="$LDADD_NTP `$PKG_CONFIG --libs-only-l --static $pkg`"
++	    LDADD_NTP="$LDADD_NTP `$PKG_CONFIG --libs-only-l $pkg`"
+ 	    LDFLAGS_NTP="$LDFLAGS_NTP `$PKG_CONFIG --libs-only-other $pkg`"
+ 	    VER_SUFFIX=o
+ 	    ntp_openssl=yes
+diff -up ntp-4.2.8p13/sntp/configure.ssl-libs ntp-4.2.8p13/sntp/configure
+--- ntp-4.2.8p13/sntp/configure.ssl-libs	2019-02-20 18:55:31.000000000 +0100
++++ ntp-4.2.8p13/sntp/configure	2019-05-20 10:20:43.575400947 +0200
+@@ -25185,7 +25185,7 @@ $as_echo_n "checking pkg-config for $pkg
+ 	    CPPFLAGS_NTP="$CPPFLAGS_NTP `$PKG_CONFIG --cflags-only-I $pkg`"
+ 	    CFLAGS_NTP="$CFLAGS_NTP `$PKG_CONFIG --cflags-only-other $pkg`"
+ 	    LDADD_NTP="$LDADD_NTP `$PKG_CONFIG --libs-only-L $pkg`"
+-	    LDADD_NTP="$LDADD_NTP `$PKG_CONFIG --libs-only-l --static $pkg`"
++	    LDADD_NTP="$LDADD_NTP `$PKG_CONFIG --libs-only-l $pkg`"
+ 	    LDFLAGS_NTP="$LDFLAGS_NTP `$PKG_CONFIG --libs-only-other $pkg`"
+ 	    VER_SUFFIX=o
+ 	    ntp_openssl=yes

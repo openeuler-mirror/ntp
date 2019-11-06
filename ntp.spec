@@ -2,10 +2,10 @@
 
 Name:                  ntp
 Version:               4.2.8p13
-Release:               1
+Release:               3
 Summary:               A protocol designed to synchronize the clocks of computers over a network
-License:               MIT and BSD and BSD with advertising	
-URL:                   https://www.ntp.org/		
+License:               MIT and BSD and BSD with advertising
+URL:                   https://www.ntp.org/
 Source0:               https://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-%{version}.tar.gz
 Source1:               ntp.conf
 Source2:               ntp.keys
@@ -14,16 +14,13 @@ Source6:               ntp.step-tickers
 Source7:               ntpdate.wrapper
 Source8:               ntp.cryptopw
 Source9:               ntpdate.sysconfig
-#source file ntp.dhclient comes from redhat
 Source10:              ntp.dhclient
 Source12:              ntpd.service
 Source13:              ntpdate.service
 Source14:              ntp-wait.service
 Source15:              sntp.service
 Source16:              sntp.sysconfig
-#Patch0001 comes from fedora
 Patch1:                ntp-sntp-sysexits.patch
-#patch0002 comes from fedora
 Patch2:                ntp-ssl-libs.patch
 
 Patch9000:             bugfix-fix-bind-port-in-debug-mode.patch
@@ -36,7 +33,7 @@ BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators
 Requires(pre):         shadow-utils
 %{?systemd_requires}
 Recommends:            ntpstat timedatex
-Provides:              ntpdate sntp 
+Provides:              ntpdate sntp
 Obsoletes:             ntpdate sntp
 
 %description
@@ -100,7 +97,7 @@ cp -r html/man/man8/{ntpdate,ntptime,tickadj}* $RPM_BUILD_ROOT%{_mandir}/man8
 
 rm -rf $RPM_BUILD_ROOT%{_docdir}
 install -d $RPM_BUILD_ROOT%{ntpdocdir}
-cp -p COPYRIGHT ChangeLog NEWS $RPM_BUILD_ROOT%{ntpdocdir}
+cp -p ChangeLog NEWS $RPM_BUILD_ROOT%{ntpdocdir}
 
 find html | grep -E '\.(html|css|txt|jpg|gif)$' | grep -v '/build/\|sntp' | \
         cpio -pmd $RPM_BUILD_ROOT%{ntpdocdir}
@@ -163,6 +160,7 @@ popd
 %files
 %defattr(-,root,root)
 %doc COPYRIGHT ChangeLog NEWS
+%license COPYRIGHT
 %dir %attr(-,ntp,ntp) %{_localstatedir}/lib/ntp
 %dir %attr(-,ntp,ntp) %{_localstatedir}/log/ntpstats
 %dir %{_localstatedir}/lib/sntp
@@ -208,11 +206,23 @@ popd
 %{_mandir}/man8/*.8*
 
 %changelog
-* Mon Sep 16 2019 openEuler Buildteam <buildteam@openeuler.org> - 1.12.0-1
+* Mon Oct 21 2019 openEuler Buildteam <buildteam@openeuler.org> - 4.2.8p13-3
+- Type:enhancement
+- Id:NA
+- SUG:NA
+- DESC:modify the location of COPYRIGHT
+
+* Mon Oct 14 2019 openEuler Buildteam <buildteam@openeuler.org> - 4.2.8p13-2
+- Type:enhancement
+- Id:NA
+- SUG:NA
+- DESC:Modify error changelog information
+
+* Mon Sep 16 2019 openEuler Buildteam <buildteam@openeuler.org> - 4.2.8p13-1
 - Type:enhancement
 - Id:NA
 - SUG:NA
 - DESC:Fix building without zlib-devel
 
 * Tue Sep 3 2019 liyongqiang<liyongqiang10@huawei.com> - 4.2.8p12-2
-- Package init 
+- Package init    

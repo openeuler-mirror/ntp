@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p13
-Release:               3
+Release:               4
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -206,6 +206,12 @@ popd
 %{_mandir}/man8/*.8*
 
 %changelog
+* Sat Jan 18 2020 openEuler Buildteam <buildteam@openeuler.org> - 4.2.8p13-4
+- Type:enhancement
+- Id:NA
+- SUG:NA
+- DESC:modify the ntp.conf
+
 * Mon Oct 21 2019 openEuler Buildteam <buildteam@openeuler.org> - 4.2.8p13-3
 - Type:enhancement
 - Id:NA

@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p13
-Release:               4
+Release:               5
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -135,6 +135,9 @@ echo 'ntpd.service' > .%{_prefix}/lib/systemd/ntp-units.d/60-ntpd.list
 
 popd
 
+%check
+make check
+
 %pre
 /usr/sbin/groupadd -g 38 ntp  2> /dev/null || :
 /usr/sbin/useradd -u 38 -g 38 -s /sbin/nologin -M -r -d %{_sysconfdir}/ntp ntp 2>/dev/null || :
@@ -206,6 +209,12 @@ popd
 %{_mandir}/man8/*.8*
 
 %changelog
+* Thu Mar 12 2020 openEuler Buildteam <buildteam@openeuler.org> - 4.2.8p13-5
+- Type:bugfix
+- Id:NA
+- SUG:NA
+- DESC:enable developer use cases
+
 * Sat Jan 18 2020 openEuler Buildteam <buildteam@openeuler.org> - 4.2.8p13-4
 - Type:enhancement
 - Id:NA

@@ -1,4 +1,3 @@
-Date: Wed, 15 Apr 2020 07:03:00 +0800
 Subject: [PATCH] Use-of-uninitialized-value in receive function
 
 ---

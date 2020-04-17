@@ -1,5 +1,3 @@
-From 21cb57ce25f11df0890946e3173fe0c25d932809 Mon Sep 17 00:00:00 2001
-From: wangli <wangli221@huawei.com>
 Date: Wed, 15 Apr 2020 07:03:00 +0800
 Subject: [PATCH] Use-of-uninitialized-value in receive function
 

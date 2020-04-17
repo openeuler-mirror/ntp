@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p13
-Release:               5
+Release:               6
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -27,6 +27,9 @@ Patch9000:             bugfix-fix-bind-port-in-debug-mode.patch
 Patch9001:             bugfix-fix-autokey-condition-error.patch
 Patch9002:             bugfix-fix-ifindex-length.patch
 Patch9003:             revert-ntpd-fix-autokey-condition-error.patch
+
+Patch6001:             backport-Use-of-uninitialized-value-in-receive-function.patch
+Patch6002:             backport-process_control-should-bail-earlier-on-short-packets.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
@@ -209,6 +212,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Tue Apr 14 2020 wangli<wangli221@huawei.com> - 4.2.8p13-6
+- Type:security
+- ID:NA
+- SUG:NA
+- DESC: solve fuzz test problem 
+
 * Thu Mar 12 2020 openEuler Buildteam <buildteam@openeuler.org> - 4.2.8p13-5
 - Type:bugfix
 - Id:NA

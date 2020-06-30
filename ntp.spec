@@ -1,8 +1,8 @@
 %global _hardened_build 1
 
 Name:                  ntp
-Version:               4.2.8p13
-Release:               6
+Version:               4.2.8p14
+Release:               1
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -20,16 +20,11 @@ Source13:              ntpdate.service
 Source14:              ntp-wait.service
 Source15:              sntp.service
 Source16:              sntp.sysconfig
-Patch1:                ntp-sntp-sysexits.patch
-Patch2:                ntp-ssl-libs.patch
+Patch1:                ntp-ssl-libs.patch
+Patch2:		       ntp-psl-def.patch
 
 Patch9000:             bugfix-fix-bind-port-in-debug-mode.patch
-Patch9001:             bugfix-fix-autokey-condition-error.patch
-Patch9002:             bugfix-fix-ifindex-length.patch
-Patch9003:             revert-ntpd-fix-autokey-condition-error.patch
-
-Patch6001:             backport-Use-of-uninitialized-value-in-receive-function.patch
-Patch6002:             backport-process_control-should-bail-earlier-on-short-packets.patch
+Patch9001:             bugfix-fix-ifindex-length.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
@@ -212,6 +207,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Tue Jun 30 2020 yuboyun<yuboyun@huawei.com> - 4.2.8p14-1
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC: update to 4.2.8p14
+
 * Tue Apr 14 2020 wangli<wangli221@huawei.com> - 4.2.8p13-6
 - Type:security
 - ID:NA

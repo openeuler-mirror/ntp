@@ -1,0 +1,24 @@
+diff -up ntp-4.2.8p14/include/ntp_config.h.psl ntp-4.2.8p14/include/ntp_config.h
+--- ntp-4.2.8p14/include/ntp_config.h.psl	2020-03-04 00:41:29.000000000 +0100
++++ ntp-4.2.8p14/include/ntp_config.h	2020-03-10 15:12:48.516539212 +0100
+@@ -280,7 +280,7 @@ typedef struct settrap_parms_tag {
+  * Poll Skew List
+  */
+ 
+-psl_item psl[17-3+1];		/* values for polls 3-17 */
++extern psl_item psl[17-3+1];	/* values for polls 3-17 */
+ 				/* To simplify the runtime code we */
+ 				/* don't want to have to special-case */
+ 				/* dealing with a default */
+diff -up ntp-4.2.8p14/ntpd/ntp_config.c.psl ntp-4.2.8p14/ntpd/ntp_config.c
+--- ntp-4.2.8p14/ntpd/ntp_config.c.psl	2020-03-10 15:13:42.575669789 +0100
++++ ntp-4.2.8p14/ntpd/ntp_config.c	2020-03-10 15:13:23.028622574 +0100
+@@ -202,6 +202,8 @@ int	cryptosw;		/* crypto command called
+ 
+ extern char *stats_drift_file;	/* name of the driftfile */
+ 
++psl_item psl[17-3+1];        /* values for polls 3-17 */
++
+ #ifdef BC_LIST_FRAMEWORK_NOT_YET_USED
+ /*
+  * backwards compatibility flags

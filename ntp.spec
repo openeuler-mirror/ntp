@@ -1,7 +1,7 @@
 %global _hardened_build 1
 
 Name:                  ntp
-Version:               4.2.8p14
+Version:               4.2.8p15
 Release:               1
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
@@ -21,10 +21,8 @@ Source14:              ntp-wait.service
 Source15:              sntp.service
 Source16:              sntp.sysconfig
 Patch1:                ntp-ssl-libs.patch
-Patch2:		       ntp-psl-def.patch
-
-Patch9000:             bugfix-fix-bind-port-in-debug-mode.patch
-Patch9001:             bugfix-fix-ifindex-length.patch
+Patch2:                bugfix-fix-bind-port-in-debug-mode.patch
+Patch3:                bugfix-fix-ifindex-length.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
@@ -207,6 +205,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Fri Jul 24 2020 yuboyun<yuboyun@huawei.com> - 4.2.8p15-1
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC: update to 4.2.8p15
+
 * Tue Jun 30 2020 yuboyun<yuboyun@huawei.com> - 4.2.8p14-1
 - Type:bugfix
 - ID:NA

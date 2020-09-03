@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p15
-Release:               1
+Release:               2
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -26,7 +26,7 @@ Patch3:                bugfix-fix-ifindex-length.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
-Requires(pre):         shadow-utils
+Requires(pre):         shadow-utils autogen >= 5.18.16
 %{?systemd_requires}
 Recommends:            ntpstat timedatex
 Provides:              ntpdate sntp
@@ -205,6 +205,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Tue Sep 01 2020 yuboyun<yuboyun@huawei.com> - 4.2.8p15-2
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC: fix ntpd service start failure
+
 * Fri Jul 24 2020 yuboyun<yuboyun@huawei.com> - 4.2.8p15-1
 - Type:bugfix
 - ID:NA

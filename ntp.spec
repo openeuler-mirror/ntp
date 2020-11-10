@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p14
-Release:               2
+Release:               3
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -31,6 +31,7 @@ BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators
 Requires(pre):         shadow-utils autogen >= 5.18.16
 %{?systemd_requires}
 Recommends:            ntpstat timedatex
+Requires:              %{name}-help
 Provides:              ntpdate sntp
 Obsoletes:             ntpdate sntp
 
@@ -207,6 +208,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Mon Nov 09 2020 xihaochen<xihaochen@huawei.com> - 4.2.8p14-3
+- Type:requirement
+- CVE:NA
+- SUG:NA
+- DESC:add ntp-help dependency for ntp
+
 * Wed Sep 02 2020 yuboyun<yuboyun@huawei.com> - 4.2.8p14-2
 - Type:bugfix
 - ID:NA

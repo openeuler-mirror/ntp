@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p14
-Release:               3
+Release:               4
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -26,6 +26,7 @@ Patch1:                ntp-psl-def.patch
 Patch2:                bugfix-fix-bind-port-in-debug-mode.patch
 Patch3:                bugfix-fix-ifindex-length.patch
 Patch4:                CVE-2020-15025.patch
+Patch5:                bugfix-MD5-manpage.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
@@ -208,6 +209,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Sun Nov 29 2020 wangxiaopeng<wangxiaopeng7@huawei.com> - 4.2.8p14-4
+- Type:bugfix
+- ID:
+- SUG:restart
+- DESC: fix md5 manpage
+
 * Wed Sep 09 2020 liulong<liulong20@huawei.com> - 4.2.8p14-3
 - Type:cves
 - ID:CVE-2020-15025

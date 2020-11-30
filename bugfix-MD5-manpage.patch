@@ -1,0 +1,156 @@
+From 1005aa66573ba48d07ea3adfaece982f78ad7511 Mon Sep 17 00:00:00 2001
+From: yuanxin <yuanxin21@huawei.com>
+Date: Wed, 15 Aug 2029 16:18:56 +0800
+Subject: [PATCH] fix MD5 manpage
+
+---
+ ntpd/invoke-ntp.keys.texi | 6 +++++-
+ ntpd/ntp.keys.5man        | 6 +++++-
+ ntpd/ntp.keys.5mdoc       | 6 +++++-
+ ntpd/ntp.keys.def         | 6 +++++-
+ ntpd/ntp.keys.man.in      | 6 +++++-
+ ntpd/ntp.keys.mdoc.in     | 6 +++++-
+ 6 files changed, 30 insertions(+), 6 deletions(-)
+
+diff --git a/ntpd/invoke-ntp.keys.texi b/ntpd/invoke-ntp.keys.texi
+index 1687d9d..f06e373 100644
+--- a/ntpd/invoke-ntp.keys.texi
++++ b/ntpd/invoke-ntp.keys.texi
+@@ -90,13 +90,17 @@ What follows are some key types, and corresponding formats:
+ 
+ @table @asis
+ @item @code{MD5}
+-The key is 1 to 16 printable characters terminated by
++The key is 1 to 20 printable characters terminated by
+ an EOL,
+ whitespace,
+ or
+ a
+ @code{#}
+ (which is the "start of comment" character).
++Keys longer than 20 characters are assumed to be hex.
++The max length of a (de-hexified) key is 32 bytes.
++If you want to use an ASCII key longer than 20 bytes,
++you must hexify it.
+ 
+ @item @code{SHA}
+ @item @code{SHA1}
+diff --git a/ntpd/ntp.keys.5man b/ntpd/ntp.keys.5man
+index 6225ee3..58fea68 100644
+--- a/ntpd/ntp.keys.5man
++++ b/ntpd/ntp.keys.5man
+@@ -127,13 +127,17 @@ What follows are some key types, and corresponding formats:
+ 
+ .TP 7
+ .NOP \f[C]MD5\f[]
+-The key is 1 to 16 printable characters terminated by
++The key is 1 to 20 printable characters terminated by
+ an EOL,
+ whitespace,
+ or
+ a
+ \f[C]#\f[]
+ (which is the "start of comment" character).
++Keys longer than 20 characters are assumed to be hex.
++The max length of a (de-hexified) key is 32 bytes.
++If you want to use an ASCII key longer than 20 bytes,
++you must hexify it.
+ .sp \n(Ppu
+ .ne 2
+ 
+diff --git a/ntpd/ntp.keys.5mdoc b/ntpd/ntp.keys.5mdoc
+index 7a728a3..0ea6d9d 100644
+--- a/ntpd/ntp.keys.5mdoc
++++ b/ntpd/ntp.keys.5mdoc
+@@ -96,13 +96,17 @@ What follows are some key types, and corresponding formats:
+ .Pp
+ .Bl -tag -width RMD160 -compact
+ .It Li MD5
+-The key is 1 to 16 printable characters terminated by
++The key is 1 to 20 printable characters terminated by
+ an EOL,
+ whitespace,
+ or
+ a
+ .Li #
+ (which is the "start of comment" character).
++Keys longer than 20 characters are assumed to be hex.
++The max length of a (de-hexified) key is 32 bytes.
++If you want to use an ASCII key longer than 20 bytes,
++you must hexify it.
+ .Pp
+ .It Li SHA
+ .It Li SHA1
+diff --git a/ntpd/ntp.keys.def b/ntpd/ntp.keys.def
+index e73ce4d..97f0c95 100644
+--- a/ntpd/ntp.keys.def
++++ b/ntpd/ntp.keys.def
+@@ -95,13 +95,17 @@ What follows are some key types, and corresponding formats:
+ .Pp
+ .Bl -tag -width RMD160 -compact
+ .It Li MD5
+-The key is 1 to 16 printable characters terminated by
++The key is 1 to 20 printable characters terminated by
+ an EOL,
+ whitespace,
+ or
+ a
+ .Li #
+ (which is the "start of comment" character).
++Keys longer than 20 characters are assumed to be hex.
++The max length of a (de-hexified) key is 32 bytes.
++If you want to use an ASCII key longer than 20 bytes,
++you must hexify it.
+ .Pp
+ .It Li SHA
+ .It Li SHA1
+diff --git a/ntpd/ntp.keys.man.in b/ntpd/ntp.keys.man.in
+index dac04dd..2dbfdaf 100644
+--- a/ntpd/ntp.keys.man.in
++++ b/ntpd/ntp.keys.man.in
+@@ -127,13 +127,17 @@ What follows are some key types, and corresponding formats:
+ 
+ .TP 7
+ .NOP \f[C]MD5\f[]
+-The key is 1 to 16 printable characters terminated by
++The key is 1 to 20 printable characters terminated by
+ an EOL,
+ whitespace,
+ or
+ a
+ \f[C]#\f[]
+ (which is the "start of comment" character).
++Keys longer than 20 characters are assumed to be hex.
++The max length of a (de-hexified) key is 32 bytes.
++If you want to use an ASCII key longer than 20 bytes,
++you must hexify it.
+ .sp \n(Ppu
+ .ne 2
+ 
+diff --git a/ntpd/ntp.keys.mdoc.in b/ntpd/ntp.keys.mdoc.in
+index 0cbb20e..ac9fa2c 100644
+--- a/ntpd/ntp.keys.mdoc.in
++++ b/ntpd/ntp.keys.mdoc.in
+@@ -96,13 +96,17 @@ What follows are some key types, and corresponding formats:
+ .Pp
+ .Bl -tag -width RMD160 -compact
+ .It Li MD5
+-The key is 1 to 16 printable characters terminated by
++The key is 1 to 20 printable characters terminated by
+ an EOL,
+ whitespace,
+ or
+ a
+ .Li #
+ (which is the "start of comment" character).
++Keys longer than 20 characters are assumed to be hex.
++The max length of a (de-hexified) key is 32 bytes.
++If you want to use an ASCII key longer than 20 bytes,
++you must hexify it.
+ .Pp
+ .It Li SHA
+ .It Li SHA1
+-- 
+2.23.0
+
+

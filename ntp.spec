@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p14
-Release:               3
+Release:               4
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -22,9 +22,9 @@ Source15:              sntp.service
 Source16:              sntp.sysconfig
 Patch1:                ntp-ssl-libs.patch
 Patch2:		       ntp-psl-def.patch
-
-Patch9000:             bugfix-fix-bind-port-in-debug-mode.patch
-Patch9001:             bugfix-fix-ifindex-length.patch
+Patch3:                bugfix-fix-bind-port-in-debug-mode.patch
+Patch4:                bugfix-fix-ifindex-length.patch
+patch5:                bugfix-MD5-manpage.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
@@ -208,6 +208,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Mon Nov 30 2020 yuanxin<yuanxin21@huawei.com> - 4.2.8p14-4
+- Type:bugfix
+- ID:
+- SUG:restart
+- DESC: fix md5 manpage
+
 * Mon Nov 09 2020 xihaochen<xihaochen@huawei.com> - 4.2.8p14-3
 - Type:requirement
 - CVE:NA

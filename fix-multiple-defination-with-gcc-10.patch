@@ -1,0 +1,155 @@
+From bac29f25f063d3a2a87f2b824179df6fbd54334f Mon Sep 17 00:00:00 2001
+From: renmingshuai <renmingshuai@huawei.com>
+Date: Fri, 30 Jul 2021 22:26:26 +0800
+Subject: [PATCH] Fix multiple defination with gcc 10
+
+---
+ sntp/tests/run-crypto.c           | 2 +-
+ sntp/tests/run-keyFile.c          | 2 +-
+ sntp/tests/run-kodDatabase.c      | 2 +-
+ sntp/tests/run-kodFile.c          | 2 +-
+ sntp/tests/run-networking.c       | 2 +-
+ sntp/tests/run-packetHandling.c   | 2 +-
+ sntp/tests/run-packetProcessing.c | 2 +-
+ sntp/tests/run-t-log.c            | 2 +-
+ sntp/tests/run-utilities.c        | 2 +-
+ tests/libntp/test-libntp.h        | 5 ++++-
+ 10 files changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/sntp/tests/run-crypto.c b/sntp/tests/run-crypto.c
+index a486f86..5d7d02e 100644
+--- a/sntp/tests/run-crypto.c
++++ b/sntp/tests/run-crypto.c
+@@ -57,7 +57,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/sntp/tests/run-keyFile.c b/sntp/tests/run-keyFile.c
+index 5b25519..4321002 100644
+--- a/sntp/tests/run-keyFile.c
++++ b/sntp/tests/run-keyFile.c
+@@ -55,7 +55,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/sntp/tests/run-kodDatabase.c b/sntp/tests/run-kodDatabase.c
+index 67b7fc2..b591a0b 100644
+--- a/sntp/tests/run-kodDatabase.c
++++ b/sntp/tests/run-kodDatabase.c
+@@ -58,7 +58,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/sntp/tests/run-kodFile.c b/sntp/tests/run-kodFile.c
+index a3af218..96d0075 100644
+--- a/sntp/tests/run-kodFile.c
++++ b/sntp/tests/run-kodFile.c
+@@ -56,7 +56,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/sntp/tests/run-networking.c b/sntp/tests/run-networking.c
+index 1c1364f..3e1b4cd 100644
+--- a/sntp/tests/run-networking.c
++++ b/sntp/tests/run-networking.c
+@@ -48,7 +48,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/sntp/tests/run-packetHandling.c b/sntp/tests/run-packetHandling.c
+index 7790b20..c58380c 100644
+--- a/sntp/tests/run-packetHandling.c
++++ b/sntp/tests/run-packetHandling.c
+@@ -64,7 +64,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/sntp/tests/run-packetProcessing.c b/sntp/tests/run-packetProcessing.c
+index c91a6d3..221c88c 100644
+--- a/sntp/tests/run-packetProcessing.c
++++ b/sntp/tests/run-packetProcessing.c
+@@ -68,7 +68,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/sntp/tests/run-t-log.c b/sntp/tests/run-t-log.c
+index 268bf41..cd835bc 100644
+--- a/sntp/tests/run-t-log.c
++++ b/sntp/tests/run-t-log.c
+@@ -50,7 +50,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/sntp/tests/run-utilities.c b/sntp/tests/run-utilities.c
+index f717882..98d9bf1 100644
+--- a/sntp/tests/run-utilities.c
++++ b/sntp/tests/run-utilities.c
+@@ -58,7 +58,7 @@ void resetTest(void)
+   setUp();
+ }
+ 
+-char const *progname;
++extern char const *progname;
+ 
+ 
+ //=======MAIN=====
+diff --git a/tests/libntp/test-libntp.h b/tests/libntp/test-libntp.h
+index 93050b3..2f386f6 100644
+--- a/tests/libntp/test-libntp.h
++++ b/tests/libntp/test-libntp.h
+@@ -1,3 +1,5 @@
++#ifndef TEST_LIBNTP_H
++#define TEST_LIBNTP_H
+ #include "config.h"
+ 
+ #include "ntp_stdlib.h"
+@@ -5,4 +7,5 @@
+ 
+ time_t timefunc(time_t *ptr);
+ void settime(int y, int m, int d, int H, int M, int S);
+-time_t nowtime;
++extern time_t nowtime;
++#endif
+-- 
+1.8.3.1
+

@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p15
-Release:               2
+Release:               3
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -23,6 +23,7 @@ Source16:              sntp.sysconfig
 Patch1:                ntp-ssl-libs.patch
 Patch2:                bugfix-fix-bind-port-in-debug-mode.patch
 Patch3:                bugfix-fix-ifindex-length.patch
+Patch4:                fix-multiple-defination-with-gcc-10.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
@@ -205,6 +206,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Fri Jul 30 2021 renmingshuai<renmingshuai@huawei.com> - 4.2.8p15-3
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC: fix multiple defination with gcc 10
+
 * Tue Sep 01 2020 yuboyun<yuboyun@huawei.com> - 4.2.8p15-2
 - Type:bugfix
 - ID:NA

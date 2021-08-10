@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p15
-Release:               3
+Release:               4
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -24,6 +24,7 @@ Patch1:                ntp-ssl-libs.patch
 Patch2:                bugfix-fix-bind-port-in-debug-mode.patch
 Patch3:                bugfix-fix-ifindex-length.patch
 Patch4:                fix-multiple-defination-with-gcc-10.patch
+Patch5:                Do-not-use-PTHREAD_STACK_MIN-on-glibc.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
@@ -206,6 +207,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Tue Aug 10 2021 renmingshuai<renmingshuai@huawei.com> - 4.2.8p15-4
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC: do not use PTHREAD_STACK_MIN on glibc
+
 * Fri Jul 30 2021 renmingshuai<renmingshuai@huawei.com> - 4.2.8p15-3
 - Type:bugfix
 - ID:NA

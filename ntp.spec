@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p14
-Release:               3
+Release:               4
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -208,6 +208,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Sat Dec 4 2021 renmingshuai<renmingshuai@huawei.com> - 4.2.8p15-4
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC: add conflict with chronyd.service in ntpd.service
+
 * Mon Nov 09 2020 xihaochen<xihaochen@huawei.com> - 4.2.8p14-3
 - Type:requirement
 - CVE:NA

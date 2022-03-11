@@ -209,7 +209,7 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
-* Thu Mar 10 2021 renmingshuai<renmingshuai@huawei.com> - 4.2.8p15-6
+* Thu Mar 10 2022 renmingshuai<renmingshuai@huawei.com> - 4.2.8p15-6
 - Type:cves
 - ID:NA
 - SUG:NA

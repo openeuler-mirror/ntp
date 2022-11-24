@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p15
-Release:               6
+Release:               7
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -28,7 +28,7 @@ Patch5:                Do-not-use-PTHREAD_STACK_MIN-on-glibc.patch
 Patch6:                fix-MD5-manpage.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
-BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
+BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser libtool
 Requires(pre):         shadow-utils autogen >= 5.18.16
 %{?systemd_requires}
 Recommends:            ntpstat timedatex
@@ -65,6 +65,8 @@ sed -i 's|\r||g' html/scripts/{footer.txt,style.css}
 for f in COPYRIGHT; do
         iconv -f iso8859-1 -t utf8 -o ${f}{_,} && touch -r ${f}{,_} && mv -f ${f}{_,}
 done
+
+./bootstrap
 
 %build
 sed -i 's|$CFLAGS -Wstrict-overflow|$CFLAGS|' configure sntp/configure
@@ -209,6 +211,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Thu Nov 24 2022 chengyechun <chengyechun1@huawei.com> - 4.2.8p15-7
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC:run the bootstrap script to prevent build failures
+
 * Tue Oct 18 2022 chengyechun <chengyechun1@huawei.com> - 4.2.8p15-6
 - Type:bugfix
 - ID:NA

@@ -1,0 +1,25 @@
+From 0494312d943d70f45e45e8e41f659318e88c8e52 Mon Sep 17 00:00:00 2001
+From: chengyechun <chengyechun1@huawei.com>
+Date: Tue, 14 Mar 2023 15:16:47 +0800
+Subject: [PATCH] modify DSA key generation parameters base on openssl3
+
+---
+ util/ntp-keygen.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/util/ntp-keygen.c b/util/ntp-keygen.c
+index eb2cb34..732c073 100644
+--- a/util/ntp-keygen.c
++++ b/util/ntp-keygen.c
+@@ -121,7 +121,7 @@
+ #define	MD5SIZE		20	/* maximum key size */
+ #ifdef AUTOKEY
+ #define	PLEN		512	/* default prime modulus size (bits) */
+-#define	ILEN		256	/* default identity modulus size (bits) */
++#define	ILEN		512	/* default identity modulus size (bits) */
+ #define	MVMAX		100	/* max MV parameters */
+ 
+ /*
+-- 
+2.27.0
+

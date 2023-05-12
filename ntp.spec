@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p15
-Release:               6
+Release:               7
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -26,6 +26,7 @@ Patch3:                bugfix-fix-ifindex-length.patch
 Patch4:                fix-multiple-defination-with-gcc-10.patch
 Patch5:                Do-not-use-PTHREAD_STACK_MIN-on-glibc.patch
 Patch6:                fix-MD5-manpage.patch
+Patch7:                backport-CVE-2023-26551-CVE-2023-26552-CVE-2023-26553-CVE-2023-26554.patch
 
 BuildRequires:	       libcap-devel openssl-devel libedit-devel libevent-devel pps-tools-devel
 BuildRequires:         autogen autogen-libopts-devel systemd gcc perl-generators perl-HTML-Parser
@@ -209,6 +210,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Fri May 12 2023 chengyechun <chengyechun1@huawei.com> - 4.2.8p15-7
+- Type:CVE
+- ID:CVE-2023-26551,CVE-2023-26552,CVE-2023-26553,CVE-2023-26554
+- SUG:NA
+- DESC:make sure the buffer has enough room for the input extra characters
+
 * Tue Oct 18 2022 chengyechun <chengyechun1@huawei.com> - 4.2.8p15-6
 - Type:bugfix
 - ID:NA

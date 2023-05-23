@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p15
-Release:               7
+Release:               8
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -209,6 +209,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Tue May 23 2023 chengyechun <chengyechun1@huawei.com> - 4.2.8p15-8
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC:add Restart and conflict service in ntpd.service
+
 * Fri May 12 2023 chengyechun <chengyechun1@huawei.com> - 4.2.8p15-7
 - Type:bugfix
 - ID:NA

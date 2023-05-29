@@ -2,7 +2,7 @@
 
 Name:                  ntp
 Version:               4.2.8p15
-Release:               7
+Release:               8
 Summary:               A protocol designed to synchronize the clocks of computers over a network
 License:               MIT and BSD and BSD with advertising
 URL:                   https://www.ntp.org/
@@ -69,6 +69,9 @@ done
 %build
 sed -i 's|$CFLAGS -Wstrict-overflow|$CFLAGS|' configure sntp/configure
 export CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing -fno-strict-overflow"
+%if "%toolchain" == "clang"
+export CFLAGS="$CFLAGS -Wno-error=int-conversion"
+%endif
 %configure \
         --sysconfdir=%{_sysconfdir}/ntp/crypto --with-locfile=redhat \
         --without-ntpsnmpd --enable-all-clocks --enable-parse-clocks \
@@ -209,6 +212,12 @@ make check
 %{_mandir}/man8/*.8*
 
 %changelog
+* Mon May 29 2023 liyunfei<liyunfei33@huawei.com> - 4.2.8p15-8
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC: add clang compile support
+
 * Tue Mar 14 2023 chengyechun<chengyechun1@huawei.com> - 4.2.8p15-7
 * Type:bugfix
 - ID:NA
